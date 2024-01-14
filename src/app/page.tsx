@@ -106,7 +106,7 @@ export default function Home() {
       </div>
 
       <div className="relative flex flex-col place-items-center w-full gap-8">
-        <h1 className="text-rose-500 text-9xl mt-16">Hi Tony!</h1>
+        <h1 className="text-rose-500 text-9xl mt-16">Hi Nick!</h1>
         <div className="flex w-full justify-around">
           <div className="flex flex-col h-dvh">
             <div>
