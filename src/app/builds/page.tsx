@@ -15,6 +15,7 @@ import {
   CardContent,
   Card,
 } from "@/Component/components/ui/card";
+import { SVGProps } from "react";
 
 export default function Component() {
   return (
@@ -76,7 +77,7 @@ export default function Component() {
   );
 }
 
-function GamepadIcon(props) {
+function GamepadIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -99,7 +100,7 @@ function GamepadIcon(props) {
   );
 }
 
-function MicroscopeIcon(props) {
+function MicroscopeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -123,7 +124,7 @@ function MicroscopeIcon(props) {
   );
 }
 
-function LightbulbIcon(props) {
+function LightbulbIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -144,7 +145,7 @@ function LightbulbIcon(props) {
   );
 }
 
-function UserIcon(props) {
+function UserIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
