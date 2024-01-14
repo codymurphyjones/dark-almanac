@@ -15,6 +15,7 @@ import {
   CardContent,
   Card,
 } from "@/Component/components/ui/card";
+import { SVGProps } from "react";
 
 export default function Component() {
   return (
@@ -159,9 +160,9 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300">
-                    "This website has helped me understand the deeper mechanics
-                    of my favorite games. It's a must-visit for any serious
-                    gamer."
+                    &quot;This website has helped me understand the deeper
+                    mechanics of my favorite games. It&apos;s a must-visit for
+                    any serious gamer.&quot;
                   </p>
                 </CardContent>
               </Card>
@@ -171,8 +172,9 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-300">
-                    "The community here is amazing. I've learned so much from
-                    the discussions and theories shared by other users."
+                    &quot;The community here is amazing. I&apos;ve learned so
+                    much from the discussions and theories shared by other
+                    users.&quot;
                   </p>
                 </CardContent>
               </Card>
@@ -200,7 +202,7 @@ export default function Component() {
   );
 }
 
-function GamepadIcon(props) {
+function GamepadIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -223,7 +225,7 @@ function GamepadIcon(props) {
   );
 }
 
-function MicroscopeIcon(props) {
+function MicroscopeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -247,7 +249,7 @@ function MicroscopeIcon(props) {
   );
 }
 
-function LightbulbIcon(props) {
+function LightbulbIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -268,7 +270,7 @@ function LightbulbIcon(props) {
   );
 }
 
-function UserIcon(props) {
+function UserIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
