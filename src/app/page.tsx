@@ -2,40 +2,6 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState, useMemo } from "react";
 import {
-  calculateAction,
-  calculateActionSpeedValue,
-  calculateAnimationSpeed,
-  calculateItemEquip,
-  calculateMagicalInteraction,
-  calculateManualDexterity,
-  calculatePersuasiveness,
-  calculateRegularInteraction,
-  calculateRegularInteratonSpeedValue,
-} from "./simulator/InteractionSpeed";
-import {
-  calculatePhysicalDamageReduction,
-  calculatePhysicalPowerBonus,
-  calculatePhysicalPowerFromStrength,
-} from "./simulator/PhysicalDamage";
-import {
-  calculateBaseHealth,
-  calculateHealthRecovery,
-  calculateMaxHealthFromStrAndVigor,
-  calculateMovespeedFromAgi,
-  calculateSpellRecovery,
-} from "./simulator/Character";
-import {
-  calculateBuffDuration,
-  calculateDebuffDuration,
-  calculateMagicDamageReduction,
-  calculateMagicPower,
-  calculateMagicPowerBonus,
-  calculateMagicResist,
-  calculateMemoryCapacity,
-  calculateMemoryCapacityFromKnowledge,
-  calculateSpellCasting,
-} from "./simulator/MagicalDamage";
-import {
   StatEditor,
   DisplayStats,
   useAttributeValues,
@@ -43,6 +9,7 @@ import {
 
 export default function Home() {
   const attributes = useAttributeValues();
+  console.log(useAttributeValues);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

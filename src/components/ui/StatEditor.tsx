@@ -121,53 +121,50 @@ export function useAttributeValues(): AttributeInputSet {
 export function StatEditor(props: { attributes: AttributeInputSet }) {
   const { attributes } = props;
   return (
-    <div
-      style={{ minWidth: "400px", backgroundColor: "red" }}
-      className="flex flex-col h-dvh gap-6"
-    >
-      <div className="flex justify-between p-2">
+    <div style={{ minWidth: "400px" }} className="flex flex-col">
+      <div className="flex justify-between p-1">
         <b>Strength:</b>
         <NumberInput
           value={attributes.strength.value}
           updateState={attributes.strength.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Vigor:</b>
         <NumberInput
           value={attributes.vigor.value}
           updateState={attributes.vigor.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Agility:</b>
         <NumberInput
           value={attributes.agility.value}
           updateState={attributes.agility.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Dexterity:</b>
         <NumberInput
           value={attributes.dexterity.value}
           updateState={attributes.dexterity.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Will:</b>
         <NumberInput
           value={attributes.will.value}
           updateState={attributes.will.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Knowledge:</b>
         <NumberInput
           value={attributes.knowledge.value}
           updateState={attributes.knowledge.update}
         />
       </div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Resourcefulness:</b>
         <NumberInput
           value={attributes.resourcefulness.value}
@@ -175,7 +172,7 @@ export function StatEditor(props: { attributes: AttributeInputSet }) {
         />
       </div>
       <hr />
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-1">
         <b>Armor Rating:</b>
         <NumberInput
           value={attributes.armor.value}
@@ -373,24 +370,8 @@ export function DisplayStats(props: { attributes: AttributeInputSet }) {
       <div>
         <b>From Bonuses</b>: 0
       </div>
-      <hr />
-      <div>
-        <b>Primary Weapon</b>: 0
-      </div>
-      <hr />
-      <div>
-        <b>Secondary Weapon</b>: 0
-      </div>
-      <hr />
-      <div>
-        <b>Impact Power</b>: 0
-      </div>
-      <div>
-        <b>Primary Weapon Impact Power</b>: 0
-      </div>
-      <div>
-        <b>Secondary Weapon Impact Power</b>: 0
-      </div>
     </div>
   );
 }
+const output = { useAttributeValues, StatEditor, DisplayStats };
+export default output;
