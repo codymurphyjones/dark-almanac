@@ -28,7 +28,7 @@ export default function RootLayout({
       </body>
       {/* {auth} */}
 
-      {env != "development" ? (
+      {env != "development" && typeof window === "object" ? (
         <div>
           <SpeedInsights />
           <Analytics />

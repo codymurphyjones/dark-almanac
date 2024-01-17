@@ -18,8 +18,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
     router.back();
   }
 
-  return typeof window !== "undefined" ? (
-    createPortal(
+  if (typeof window === "object") {
+    return createPortal(
       <div className="modal-backdrop">
         <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
           {children}
@@ -27,13 +27,8 @@ export function Modal({ children }: { children: React.ReactNode }) {
         </dialog>
       </div>,
       document.getElementById("modal-root")!
-    )
-  ) : (
-    <div className="modal-backdrop">
-      <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
-        {children}
-        <button onClick={onDismiss} className="close-button" />
-      </dialog>
-    </div>
-  );
+    );
+  }
+
+  return null;
 }

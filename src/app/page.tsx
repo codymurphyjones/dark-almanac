@@ -22,7 +22,6 @@ import {
 
 export default function Component() {
   const loginSegments = useSelectedLayoutSegment("auth");
-  console.log(loginSegments);
   const attributes = useAttributeValues();
   return (
     <div className="dark flex flex-col min-h-screen bg-gray-900 text-white">
