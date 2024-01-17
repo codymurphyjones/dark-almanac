@@ -9,12 +9,7 @@
 // Accent: #25AE8D
 // Alert: #F9F871
 import Link from "next/link";
-import {
-  CardTitle,
-  CardHeader,
-  CardContent,
-  Card,
-} from "@/Component/components/ui/card";
+import { CardTitle, CardHeader, CardContent, Card } from "@Component/ui/card";
 import { SVGProps } from "react";
 
 export default function Component() {
