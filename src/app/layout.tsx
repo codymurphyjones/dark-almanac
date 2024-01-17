@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const env = process.env.NODE_ENV;
 export const metadata: Metadata = {
   title: "Dark Almanac - The Dark and Darker Build Tool",
   description:
@@ -20,8 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <SpeedInsights />
-      <Analytics />
+      {env != "development" ? (
+        <>
+          <SpeedInsights />
+          <Analytics />
+        </>
+      ) : null}
     </html>
   );
 }
