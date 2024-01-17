@@ -52,7 +52,9 @@ export default function Component() {
             <div className="bg-[#FF0000] w-96">
               <b>Rogue</b>
             </div>
-            <div className="bg-[#FF0000] w-96">Test</div>
+            <div className="bg-[#FF0000] w-96">
+              <EquipmentDisplay />
+            </div>
             <div className="bg-[#FF0000] w-96">Test</div>
           </div>
         </section>
@@ -170,197 +172,84 @@ function UserIcon(props: SVGProps<SVGSVGElement>) {
  * @see https://v0.dev/t/ydgoSU2IfFd
  */
 //import { Button } from "@/components/ui/button"
+import React from "react";
 
-function Character() {
-  return `<div className="bg-[#1c1c1c] p-8 text-white">
-      <div className="flex gap-8">
-        <div className="flex flex-col items-center">
-          <div className="border-2 border-gray-700 p-4 rounded-full">
-            <img
-              alt="Character"
-              className="h-[300px] w-[200px] object-cover"
-              height="300"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "200/300",
-                objectFit: "cover",
-              }}
-              width="200"
-            />
-          </div>
-          <div className="mt-4">
-            <h2 className="text-center text-lg font-semibold">Rogue</h2>
-            <ul className="mt-2">
-              <li>Strength: 4</li>
-              <li>Vigor: 5</li>
-              <li>Agility: 26</li>
-              <li>Dexterity: 25</li>
-              <li>Will: 10</li>
-              <li>Knowledge: 10</li>
-              <li>Resourcefulness: 25</li>
-              <li>Health: 75 / 75</li>
-            </ul>
-            <Button className="mt-4 w-full">Open Details</Button>
-          </div>
-        </div>
-        <div className="flex flex-col">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="flex flex-col items-center col-span-2">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Head Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Head</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Neck Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Neck</span>
-            </div>
-            <div className="flex flex-col items-center col-start-1">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Hand Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Hand</span>
-            </div>
-            <div className="flex flex-col items-center col-start-2">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Chest Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Chest</span>
-            </div>
-            <div className="flex flex-col items-center col-start-3">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Back Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Back</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Leg Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Leg</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Ring Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Ring</span>
-            </div>
-            <div className="flex flex-col items-center col-start-2">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Feet Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Feet</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="border border-gray-600 p-2">
-                <img
-                  alt="Ring Slot"
-                  className="h-[100px] w-[100px] object-cover"
-                  height="100"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "100/100",
-                    objectFit: "cover",
-                  }}
-                  width="100"
-                />
-              </div>
-              <span className="mt-2">Ring</span>
-            </div>
-          </div>
-          <div className="border-t border-gray-600 mt-4 pt-4">
-            <div className="grid grid-cols-6 gap-4" />
-            <div className="mt-4 flex justify-between">
-              <span>Gold:</span>
-              <span>122</span>
-            </div>
-          </div>
+const EquipmentDisplay = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        backgroundColor: "red",
+        minHeight: "50px",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "blue",
+          minHeight: "500px",
+          minWidth: "150px",
+          margin: "10px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          alignContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "green",
+            height: "80px",
+            width: "80px",
+            margin: "10px",
+          }}
+        ></div>
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "orange",
+            height: "140px",
+            width: "80px",
+            margin: "10px",
+          }}
+        ></div>
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "yellow",
+            height: "140px",
+            width: "80px",
+            margin: "10px",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              left: "-40px",
+              display: "flex",
+              backgroundColor: "purple",
+              height: "30px",
+              width: "30px",
+            }}
+          ></div>
+          <div
+            style={{
+              position: "relative",
+              right: "-40px",
+              display: "flex",
+              backgroundColor: "purple",
+              height: "30px",
+              width: "30px",
+            }}
+          ></div>
         </div>
       </div>
-    </div>`;
-}
+    </div>
+  );
+};
 
 // function Component() {
 //   return (

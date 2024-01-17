@@ -54,6 +54,23 @@ function ifNaN(
   }
 }
 
+function NumberInput(props: {
+  value: number;
+  updateState: Dispatch<SetStateAction<number>>;
+}) {
+  const { value, updateState } = props;
+  return (
+    <input
+      className="hide-input-arrows text-black font p-1"
+      type="number"
+      value={value}
+      onChange={(text) => {
+        ifNaN(text.currentTarget.value, 0, updateState);
+      }}
+    />
+  );
+}
+
 function useMemoizedValue<T extends (...args: any[]) => any>(
   func: T,
   ...args: Parameters<T>
@@ -84,47 +101,72 @@ export default function Home() {
   );
   console.log(`vigorStrHp: ${hpFromStrAndVigor}`);
   console.log(`baseHp: ${calculateBaseHealth(hpFromStrAndVigor)}`);
-  let t = useMemoizedValues(calculateBaseHealth, hpFromStrAndVigor);
-  let baseHp = calculateBaseHealth(hpFromStrAndVigor);
-  //let memCapFromKnowledge = calculateMemoryCapacityFromKnowledge(knowledge);
+  let baseHp = useMemoizedValue(calculateBaseHealth, hpFromStrAndVigor);
   let memCapFromKnowledge = useMemoizedValue(
     calculateMemoryCapacityFromKnowledge,
     knowledge
   );
-  let memCapacity = calculateMemoryCapacity(knowledge, memCapBonus, memCap);
+  let memCapacity = useMemoizedValue(
+    calculateMemoryCapacity,
+    knowledge,
+    memCapBonus,
+    memCap
+  );
 
-  let healthRecovery = calculateHealthRecovery(vigor);
-  let spellRecovery = calculateSpellRecovery(knowledge);
+  let healthRecovery = useMemoizedValue(calculateHealthRecovery, vigor);
+  let spellRecovery = useMemoizedValue(calculateSpellRecovery, knowledge);
 
-  let baseMoveSpeed = calculateMovespeedFromAgi(agility);
-  let actionSpeedValue = calculateActionSpeedValue(dexterity, agility);
-  let actionSpeed = calculateAction(actionSpeedValue);
-  let manualDexterity = calculateManualDexterity(dexterity);
+  let baseMoveSpeed = useMemoizedValue(calculateMovespeedFromAgi, agility);
+  let actionSpeedValue = useMemoizedValue(
+    calculateActionSpeedValue,
+    dexterity,
+    agility
+  );
+  let actionSpeed = useMemoizedValue(calculateAction, actionSpeedValue);
+  let manualDexterity = useMemoizedValue(calculateManualDexterity, dexterity);
 
-  let spellCastingSpeed = calculateSpellCasting(knowledge);
+  let spellCastingSpeed = useMemoizedValue(calculateSpellCasting, knowledge);
   let regularInteractionValue = calculateRegularInteratonSpeedValue(
     dexterity,
     resourcefulness
   );
-  let equipSpeed = calculateItemEquip(dexterity);
-  let regularInteraction = calculateRegularInteraction(regularInteractionValue);
-  let magicInteracton = calculateMagicalInteraction(will);
-  let persuasiveness = calculatePersuasiveness(resourcefulness);
-
-  let buffDuration = calculateBuffDuration(will);
-  let debuffDuration = calculateDebuffDuration(will);
-
-  let physicalDamageReduction = calculatePhysicalDamageReduction(armorState);
-
-  let magicRes = calculateMagicResist(will);
-  let magicResistance = calculateMagicDamageReduction(magicRes);
-  let physicalPowerBonusFromStrength =
-    calculatePhysicalPowerFromStrength(strength);
-  let physicalPowerBonus = calculatePhysicalPowerBonus(
-    physicalPowerBonusFromStrength + 0
+  let equipSpeed = useMemoizedValue(calculateItemEquip, dexterity);
+  let regularInteraction = useMemoizedValue(
+    calculateRegularInteraction,
+    regularInteractionValue
   );
-  let magicPowerFromWill = calculateMagicPower(will);
-  let magicPowerBonus = calculateMagicPowerBonus(magicPowerFromWill);
+  let magicInteracton = useMemoizedValue(calculateMagicalInteraction, will);
+  let persuasiveness = useMemoizedValue(
+    calculatePersuasiveness,
+    resourcefulness
+  );
+
+  let buffDuration = useMemoizedValue(calculateBuffDuration, will);
+  let debuffDuration = useMemoizedValue(calculateDebuffDuration, will);
+
+  let physicalDamageReduction = useMemoizedValue(
+    calculatePhysicalDamageReduction,
+    armorState
+  );
+
+  let magicRes = useMemoizedValue(calculateMagicResist, will);
+  let magicResistance = useMemoizedValue(
+    calculateMagicDamageReduction,
+    magicRes
+  );
+  let physicalPowerBonusFromStrength = useMemoizedValue(
+    calculatePhysicalPowerFromStrength,
+    strength
+  );
+  let physicalPowerBonus = useMemoizedValue(
+    calculatePhysicalPowerBonus,
+    physicalPowerBonusFromStrength
+  );
+  let magicPowerFromWill = useMemoizedValue(calculateMagicPower, will);
+  let magicPowerBonus = useMemoizedValue(
+    calculateMagicPowerBonus,
+    magicPowerFromWill
+  );
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -264,78 +306,39 @@ export default function Home() {
           >
             <div className="flex justify-between p-2">
               <b>Strength:</b>
-              <input
-                className="hide-input-arrows text-red-500"
-                type="number"
-                value={strength}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setStrength);
-                }}
-              />
+              <NumberInput value={strength} updateState={setStrength} />
             </div>
             <div className="flex justify-between p-2">
               <b>Vigor:</b>
-              <input
-                value={vigor}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setVigor);
-                }}
-              />
+              <NumberInput value={vigor} updateState={setVigor} />
             </div>
             <div className="flex justify-between p-2">
               <b>Agility:</b>
-              <input
-                value={agility}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setAgility);
-                }}
-              />
+              <NumberInput value={agility} updateState={setAgility} />
             </div>
             <div className="flex justify-between p-2">
               <b>Dexterity:</b>
-              <input
-                value={dexterity}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setDexterity);
-                }}
-              />
+              <NumberInput value={dexterity} updateState={setDexterity} />
             </div>
             <div className="flex justify-between p-2">
               <b>Will:</b>
-              <input
-                value={will}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setWill);
-                }}
-              />
+              <NumberInput value={will} updateState={setWill} />
             </div>
             <div className="flex justify-between p-2">
               <b>Knowledge:</b>
-              <input
-                value={knowledge}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setKnowledge);
-                }}
-              />
+              <NumberInput value={knowledge} updateState={setKnowledge} />
             </div>
             <div className="flex justify-between p-2">
               <b>Resourcefulness:</b>
-              <input
+              <NumberInput
                 value={resourcefulness}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setResourcefulness);
-                }}
+                updateState={setResourcefulness}
               />
             </div>
             <hr />
             <div className="flex justify-between p-2">
               <b>Armor Rating:</b>
-              <input
-                value={armorState}
-                onChange={(text) => {
-                  ifNaN(text.currentTarget.value, 0, setArmorState);
-                }}
-              />
+              <NumberInput value={armorState} updateState={setArmorState} />
             </div>
           </div>
         </div>
