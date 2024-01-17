@@ -42,9 +42,14 @@ function ifNaN(
   callback: Dispatch<SetStateAction<number>>
 ) {
   let res = parseInt(value);
+  console.log(`text val: ${value}`);
+  console.log(`parse val: ${res}`);
+
   if (Number.isNaN(res)) {
+    console.log(`is not a number`);
     callback(fallback);
   } else {
+    console.log(`is number`);
     callback(parseInt(value));
   }
 }
