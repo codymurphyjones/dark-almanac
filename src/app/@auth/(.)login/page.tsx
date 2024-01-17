@@ -1,3 +1,4 @@
+"use client";
 import { Modal } from "./modal";
 
 export default function Page() {
@@ -5,6 +6,9 @@ export default function Page() {
   return (
     <>
       <div className="w-20 h-20 bg-red-300">TESTING</div>
+      <Modal>
+        <span>hi</span>
+      </Modal>
       <Modal>
         <div className="absolute top-0 left-0 w-[250px] h-[250px] bg-red-800">
           Login Popup
