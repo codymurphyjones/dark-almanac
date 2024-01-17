@@ -282,9 +282,6 @@ export function DisplayStats(props: { attributes: AttributeInputSet }) {
         <b>Utility Effectiveness</b>: 0
       </div>
       <div>
-        <b>Luck</b>: 0
-      </div>
-      <div>
         <b>Health Recovery Bonus</b>: {healthRecovery}%
       </div>
       <div>

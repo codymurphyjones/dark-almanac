@@ -40,16 +40,17 @@ export default function Component() {
           </Link>
         </nav>
       </header>
-      <main className="flex-1 bg-gray-800">
-        <section className="py-12 md:py-24 lg:py-32 bg-gray-800">
-          <div className="flex px-4 md:px-6 flex-row justify-between">
-            <div className="bg-[#FF0000] w-96">
+      <main className="flex-1 bg-gray-800 h-full">
+        <section className="bg-gray-800 h-full">
+          <div id="test" className="flex justify-between">
+            <div className="bg-[#FF0000] w-1/3 m-2">
               <b>Class Selector/Perks</b>
+              <div className="flex bg-green-800 h-1/2 w-full"></div>
             </div>
-            <div className="bg-[#FF0000] w-96">
+            <div className="bg-[#FF0000] w-1/3 m-2">
               <EquipmentDisplay />
             </div>
-            <div className="bg-[#FF0000] w-96">
+            <div className="bg-[#FF0000] w-1/3 m-2">
               <span className="p-1 bg-green-800">Details</span>
               <span className="p-1 bg-orange-200">Physical Damage</span>
               <span className="p-1 bg-blue-300">Magical Damage</span>
