@@ -265,6 +265,8 @@ export default function Home() {
             <div className="flex justify-between p-2">
               <b>Strength:</b>
               <input
+                className="hide-input-arrows text-red-500"
+                type="number"
                 value={strength}
                 onChange={(text) => {
                   ifNaN(text.currentTarget.value, 0, setStrength);
