@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState, useMemo } from "react";
 import {
   calculateAction,
   calculateActionSpeedValue,
@@ -54,6 +54,17 @@ function ifNaN(
   }
 }
 
+function useMemoizedValue<T extends (...args: any[]) => any>(
+  func: T,
+  ...args: Parameters<T>
+): ReturnType<T> {
+  return useMemo(() => func(...args), [args, func]);
+}
+
+function useMemoizedValues(func: Function, ...args: any[]) {
+  return useMemo(() => func(args), [args, func]);
+}
+
 export default function Home() {
   const [armorState, setArmorState] = useState(0);
   const [vigor, setVigor] = useState(5);
@@ -67,9 +78,19 @@ export default function Home() {
   const [memCap, setMemCap] = useState(0);
   const [memCapBonus, setMemCapBonus] = useState(0);
 
-  let hpFromStrAndVigor = calculateMaxHealthFromStrAndVigor(strength, vigor);
+  let hpFromStrAndVigor = useMemo(
+    () => calculateMaxHealthFromStrAndVigor(strength, vigor),
+    [strength, vigor]
+  );
+  console.log(`vigorStrHp: ${hpFromStrAndVigor}`);
+  console.log(`baseHp: ${calculateBaseHealth(hpFromStrAndVigor)}`);
+  let t = useMemoizedValues(calculateBaseHealth, hpFromStrAndVigor);
   let baseHp = calculateBaseHealth(hpFromStrAndVigor);
-  let memCapFromKnowledge = calculateMemoryCapacityFromKnowledge(knowledge);
+  //let memCapFromKnowledge = calculateMemoryCapacityFromKnowledge(knowledge);
+  let memCapFromKnowledge = useMemoizedValue(
+    calculateMemoryCapacityFromKnowledge,
+    knowledge
+  );
   let memCapacity = calculateMemoryCapacity(knowledge, memCapBonus, memCap);
 
   let healthRecovery = calculateHealthRecovery(vigor);

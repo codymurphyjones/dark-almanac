@@ -1,4 +1,8 @@
-import { calculateStatCurve, buildCurve } from "./CalculateCurve";
+import {
+  calculateStatCurve,
+  buildCurve,
+  calculateLoggedStatCurve,
+} from "./CalculateCurve";
 
 // Curve Definitions
 const baseHealthCurve = buildCurve(
@@ -32,9 +36,12 @@ let spellRecoveryCurve = buildCurve(
 );
 
 let agilityCurve = buildCurve([0, 2], [15, 1], [45, 0.5], [65, 0.33], [100, 0]);
-
 // Curve Calculations
-let calculateBaseHealth = calculateStatCurve(60, baseHealthCurve, Math.ceil);
+let calculateBaseHealth = calculateLoggedStatCurve(
+  60,
+  baseHealthCurve,
+  Math.ceil
+);
 let calculateHealthRecovery = calculateStatCurve(-55, healthRecoveryCurve);
 let calculateSpellRecovery = calculateStatCurve(43, spellRecoveryCurve);
 let calculateMovespeedFromAgi = calculateStatCurve(

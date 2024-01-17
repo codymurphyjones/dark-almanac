@@ -1,8 +1,5 @@
-import {
-  buildCurve,
-  calculateStatCurve,
-  calculateStatCurveWLogs,
-} from "./CalculateCurve";
+import { useMemo } from "react";
+import { buildCurve, calculateStatCurve } from "./CalculateCurve";
 
 // Curve Definitions
 let magicPowerCurve = buildCurve([0, 1], [100, 0]);
@@ -83,7 +80,7 @@ let calculateMagicDamageReduction = calculateStatCurve(
   -595,
   magicDamageReductionCurve
 );
-let calculateMagicResist = calculateStatCurveWLogs(
+let calculateMagicResist = calculateStatCurve(
   -20,
   magicResistCurve,
   Math.floor
