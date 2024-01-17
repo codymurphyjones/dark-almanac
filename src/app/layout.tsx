@@ -14,17 +14,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  auth,
 }: {
   children: React.ReactNode;
+  auth: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        {auth}
+        <div id="modal-root" />
+      </body>
+      {/* {auth} */}
+
       {env != "development" ? (
-        <>
+        <div>
           <SpeedInsights />
           <Analytics />
-        </>
+        </div>
       ) : null}
     </html>
   );

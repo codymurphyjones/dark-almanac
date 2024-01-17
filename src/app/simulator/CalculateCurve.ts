@@ -94,12 +94,6 @@ export function calculateLoggedStatCurve(
     let weightCheck = -1;
     let currIndex = 0;
 
-    function updateMinResult() {
-      minResult =
-        minResult +
-        (arr[currIndex + 1][0] - arr[currIndex][0]) * arr[currIndex][1];
-    }
-
     function selectNextCurve() {
       let baseResult =
         minResult +
@@ -114,31 +108,13 @@ export function calculateLoggedStatCurve(
         continue;
       }
 
-      console.log("currIndex: ", currIndex);
-      console.log("arrLength: ", arr.length);
-      console.log("input:", input);
-      console.log("input check: ", currIndex < arr.length);
-
       if (arr.length - 1 > currIndex && arr[currIndex + 1][0] < input) {
-        console.log("check: ", arr[currIndex + 1][0] < input);
         selectNextCurve();
       } else {
         weightCheck = currIndex;
       }
     }
     let result = minResult + (input - arr[currIndex][0]) * arr[currIndex][1];
-    console.log(`Curve Selection: ${weightCheck}`);
-    console.log(
-      `${minResult} + ((${input} - ${arr[currIndex][0]}) * ${arr[currIndex][1]}`
-    );
-    console.log(`MinInput: ${arr[currIndex][0]}`);
-    console.log(`MinResult: ${minResult}`);
-    console.log(`InputDiff: ${input - arr[currIndex][0]}`);
-    console.log(`Weight: ${arr[currIndex][1]}`);
-    console.log(
-      `ArmorDiff: ${(input - arr[currIndex][0]) * arr[currIndex][1]}`
-    );
-    console.log(`Result: ${result}`);
 
     return modifier(result);
   };

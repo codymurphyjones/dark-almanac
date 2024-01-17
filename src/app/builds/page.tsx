@@ -167,7 +167,6 @@ const EquipmentSlot = (props: EquipmentSlotProps) => {
   cssClassNames +=
     " flex bg-zinc-700 border-2 border-stone-900 " +
     props.absolutePosition?.join(" ");
-  console.log(cssClassNames);
   let ogClass =
     "shadow-lime-500 shadow-[0_0px_3px_1px_rgb(0,0,0)] absolute flex bg-zinc-700 border-2 border-stone-900 left-[-100px] top-[-30px] w-[80px] h-[140px]";
   return <div className={cssClassNames}>{props.children}</div>;

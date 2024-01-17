@@ -10,6 +10,7 @@
 // Accent: #25AE8D
 // Alert: #F9F871
 import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
 import Image from "next/image";
 import {
   useAttributeValues,
@@ -20,6 +21,8 @@ import {
 //import { useAttributeValues } from "../../lib/hooks";
 
 export default function Component() {
+  const loginSegments = useSelectedLayoutSegment("auth");
+  console.log(loginSegments);
   const attributes = useAttributeValues();
   return (
     <div className="dark flex flex-col min-h-screen bg-gray-900 text-white">
@@ -43,9 +46,9 @@ export default function Component() {
           </Link>
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
-            href="#"
+            href="/login"
           >
-            Contact
+            Login
           </Link>
         </nav>
       </header>
@@ -167,9 +170,7 @@ const EquipmentSlot = (props: EquipmentSlotProps) => {
   cssClassNames +=
     " flex bg-zinc-700 border-2 border-stone-900 " +
     props.absolutePosition?.join(" ");
-  console.log(cssClassNames);
-  let ogClass =
-    "shadow-lime-500 shadow-[0_0px_3px_1px_rgb(0,0,0)] absolute flex bg-zinc-700 border-2 border-stone-900 left-[-100px] top-[-30px] w-[80px] h-[140px]";
+
   return <div className={cssClassNames}>{props.children}</div>;
 };
 
