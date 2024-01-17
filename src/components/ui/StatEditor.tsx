@@ -268,7 +268,7 @@ export function DisplayStats(props: { attributes: AttributeInputSet }) {
     magicPowerFromWill
   );
   return (
-    <div className="flex flex-col h-dvh">
+    <div className="flex flex-col">
       <div>
         <b>Health</b>: {baseHp}
       </div>

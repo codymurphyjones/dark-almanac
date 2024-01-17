@@ -49,21 +49,16 @@ export default function Component() {
           </Link>
         </nav>
       </header>
-      <main className="flex-1 bg-gray-800 h-full">
-        <div className="bg-gray-800 h-full">
-          <div
-            id="test"
-            className="flex justify-between flex-col items-center lg:justify-content lg:items-start lg:flex-row"
-          >
-            <div className="lg:w-1/3 m-2">
+      <main className="flex flex-1 bg-gray-800 h-full">
+        <div className="flex flex-1 bg-gray-800 h-full">
+          <div className="flex flex-1 p-4 w-full justify-between flex-col items-center lg:justify-content lg:items-start lg:flex-row">
+            <div className="flex flex-col lg:max-w-1/3 m-2">
               <b>Class Selector/Perks</b>
-              <div className="flex flex-col flex-wrap w-full justify-center items-center">
-                <div className="flex h-1/2 w-full items-center">
-                  <div className="flex bg-blue-800 h-16 w-16 justify-center align-middle m-2"></div>
-                  <h2 className="m-2">Rogue</h2>
-                </div>
+              <div className="flex h-1/2 w-full items-center m-2">
+                <div className="flex bg-blue-800 h-16 w-16 justify-center align-middle p-2"></div>
+                <h2 className="m-2">Rogue</h2>
               </div>
-              <div className="flex flex-wrap h-1/3 w-full">
+              <div className="flex flex-wrap h-1/3 w-full mt-4 mb-8">
                 <div className="flex h-1/2 w-1/2 justify-center items-center mt-2">
                   <div className="flex bg-green-800 h-24 w-24 justify-center align-middle"></div>
                 </div>
@@ -81,10 +76,10 @@ export default function Component() {
                 <StatEditor attributes={attributes} />
               </div>
             </div>
-            <div className="w-full lg:w-1/3 m-2">
+            <div className="flex flex-1 h-full w-full min-w-[260px] lg:max-w-1/3 lg:w-1/3 m-2">
               <EquipmentDisplay />
             </div>
-            <div className="w-full lg:w-1/3 m-2">
+            <div className="w-full lg:max-w-1/3 lg:w-1/3 m-2">
               <div className="flex-1 grow">
                 <span className="p-1 bg-green-800">Details</span>
                 <span className="p-1 bg-orange-200">Physical Damage</span>
@@ -126,7 +121,153 @@ export default function Component() {
 import React from "react";
 import { Z_VERSION_ERROR } from "zlib";
 
+type ItemRarity =
+  | "none"
+  | "junk"
+  | "common"
+  | "uncommon"
+  | "rare"
+  | "epic"
+  | "legendary"
+  | "unique";
+
+type EquipmentSlotProps = {
+  rarity: ItemRarity;
+  absolute?: boolean;
+  absolutePosition?: TailwindPositionCoords[];
+  children?: React.ReactElement | React.ReactElement[];
+};
+
+function getColorByRarity(rarity: ItemRarity) {
+  if (rarity === "common") return "shadow-neutral-50";
+
+  if (rarity === "uncommon") return "shadow-lime-500";
+  if (rarity === "rare") return "shadow-blue-700";
+  if (rarity === "epic") return "shadow-violet-900";
+  if (rarity === "legendary") return "shadow-amber-600";
+  if (rarity === "unique") return "shadow-yellow-200";
+
+  return "";
+}
+
+function createDynamicPosition(type: string, value: string) {
+  return `${type}-[${value}]`;
+}
+
+type PositionCoords = "top" | "bottom" | "left" | "right" | "w" | "h";
+type TailwindPositionCoords = `${PositionCoords}-[${string}px]`;
+
+const EquipmentSlot = (props: EquipmentSlotProps) => {
+  let cssClassNames = `${props.absolute ? "absolute " : "relative"}${
+    props.rarity !== "junk"
+      ? " shadow-[0_0px_3px_1px_rgb(0,0,0)] " + getColorByRarity(props.rarity)
+      : ""
+  }`;
+
+  cssClassNames +=
+    " flex bg-zinc-700 border-2 border-stone-900 " +
+    props.absolutePosition?.join(" ");
+  console.log(cssClassNames);
+  let ogClass =
+    "shadow-lime-500 shadow-[0_0px_3px_1px_rgb(0,0,0)] absolute flex bg-zinc-700 border-2 border-stone-900 left-[-100px] top-[-30px] w-[80px] h-[140px]";
+  return <div className={cssClassNames}>{props.children}</div>;
+};
+
 const EquipmentDisplay = () => {
+  return (
+    <div className="flex flex-1 h-full w-full flex-col min-w-[250px] justify-center flex-wrap content-center gap-2">
+      <EquipmentSlot
+        rarity="uncommon"
+        absolutePosition={["w-[80px]", "h-[80px]"]}
+      >
+        <EquipmentSlot
+          absolute
+          rarity="uncommon"
+          absolutePosition={[
+            "top-[-40px]",
+            "right-[5px]",
+            "w-[30px]",
+            "h-[30px]",
+          ]}
+        />
+        <EquipmentSlot
+          absolute
+          rarity="epic"
+          absolutePosition={[
+            "top-[-30px]",
+            "right-[-100px]",
+            "w-[80px]",
+            "h-[140px]",
+          ]}
+        />
+
+        <EquipmentSlot
+          absolute
+          rarity="unique"
+          absolutePosition={[
+            "top-[-30px]",
+            "left-[-100px]",
+            "w-[80px]",
+            "h-[140px]",
+          ]}
+        />
+      </EquipmentSlot>
+
+      <EquipmentSlot
+        rarity="uncommon"
+        absolutePosition={["w-[80px]", "h-[140px]"]}
+      >
+        <EquipmentSlot
+          absolute
+          rarity="legendary"
+          absolutePosition={[
+            "bottom-[10px]",
+            "right-[-90px]",
+            "w-[80px]",
+            "h-[80px]",
+          ]}
+        />
+        <EquipmentSlot
+          absolute
+          rarity="uncommon"
+          absolutePosition={[
+            "bottom-[10px]",
+            "left-[-90px]",
+            "w-[80px]",
+            "h-[80px]",
+          ]}
+        />
+      </EquipmentSlot>
+      <EquipmentSlot
+        rarity="uncommon"
+        absolutePosition={["w-[80px]", "h-[140px]"]}
+      >
+        <EquipmentSlot
+          absolute
+          rarity="uncommon"
+          absolutePosition={["left-[-40px]", "w-[30px]", "h-[30px]"]}
+        />
+        <EquipmentSlot
+          absolute
+          rarity="uncommon"
+          absolutePosition={["right-[-40px]", "w-[30px]", "h-[30px]"]}
+        />
+        <EquipmentSlot
+          absolute
+          rarity="uncommon"
+          absolutePosition={[
+            "bottom-[0px]",
+            "right-[-90px]",
+            "w-[80px]",
+            "h-[80px]",
+          ]}
+        />
+      </EquipmentSlot>
+    </div>
+  );
+};
+
+const EquipmentDisplay2 = () => {
   return (
     <div
       style={{

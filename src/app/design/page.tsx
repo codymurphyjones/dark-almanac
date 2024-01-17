@@ -49,51 +49,26 @@ export default function Component() {
           </Link>
         </nav>
       </header>
-      <main className="flex-1 bg-gray-800 h-full">
-        <div className="bg-gray-800 h-full">
+      <main className="flex flex-1 bg-gray-800">
+        <div className="flex flex-1 bg-gray-800 ">
           <div
             id="test"
-            className="flex justify-between flex-col items-center lg:justify-content lg:items-start lg:flex-row"
+            className="flex flex-1 p-4 w-full justify-between flex-col items-center lg:justify-content lg:items-start lg:flex-row"
           >
-            <div className="lg:w-1/3 m-2">
+            <div className="lg:w-1/3 m-2 bg-rose-500 h-full">
               <b>Class Selector/Perks</b>
-              <div className="flex flex-col flex-wrap w-full justify-center items-center">
-                <div className="flex h-1/2 w-full items-center">
-                  <div className="flex bg-blue-800 h-16 w-16 justify-center align-middle m-2"></div>
-                  <h2 className="m-2">Rogue</h2>
-                </div>
-              </div>
-              <div className="flex flex-wrap h-1/3 w-full">
-                <div className="flex h-1/2 w-1/2 justify-center items-center mt-2">
-                  <div className="flex bg-green-800 h-24 w-24 justify-center align-middle"></div>
-                </div>
-                <div className="flex h-1/2 w-1/2 justify-center items-center mt-2">
-                  <div className="flex bg-green-800 h-24 w-24 justify-center align-middle"></div>
-                </div>
-                <div className="flex h-1/2 w-1/2 justify-center items-center mt-2">
-                  <div className="flex bg-green-800 h-24 w-24 justify-center align-middle"></div>
-                </div>
-                <div className="flex h-1/2 w-1/2 justify-center items-center mt-2">
-                  <div className="flex bg-green-800 h-24 w-24 justify-center align-middle"></div>
-                </div>
-              </div>
-              <div className="flex">
-                <StatEditor attributes={attributes} />
-              </div>
             </div>
-            <div className="w-full lg:w-1/3 m-2">
+            <div className="w-full m-2 lg:w-1/3 bg-violet-800">
               <EquipmentDisplay />
             </div>
-            <div className="w-full lg:w-1/3 m-2">
+            <div className="w-full lg:w-1/3 m-2 bg-yellow-500">
               <div className="flex-1 grow">
                 <span className="p-1 bg-green-800">Details</span>
                 <span className="p-1 bg-orange-200">Physical Damage</span>
                 <span className="p-1 bg-blue-300">Magical Damage</span>
               </div>
 
-              <div className="flex-1">
-                <DisplayStats attributes={attributes} />
-              </div>
+              <div className="flex"></div>
             </div>
           </div>
         </div>
