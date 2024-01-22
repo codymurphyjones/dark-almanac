@@ -13,10 +13,30 @@ import {
   useAttributeValues,
   DisplayStats,
   StatEditor,
+  PhysicalStats,
+  MagicalStats,
 } from "@Component/StatEditor";
+
+function styleDiff(
+  val: boolean,
+  styleA: string,
+  styleB: string,
+  append?: string,
+  prepend?: string
+) {
+  if (append === undefined) append = "";
+  if (prepend === undefined) prepend = "";
+  console.log();
+  console.log("val", val);
+  return val
+    ? prepend + " " + styleA + " " + append
+    : prepend + " " + styleB + " " + append;
+}
 
 export default function SimulatorComponent(props: { text?: string }) {
   const attributes = useAttributeValues();
+  const [statTabVal, setStatTabVal] = useState(0);
+  console.log("statTab:", statTabVal);
 
   return (
     <div className="flex flex-1 p-4 w-full justify-between flex-col items-center lg:justify-content lg:items-start lg:flex-row">
@@ -47,15 +67,51 @@ export default function SimulatorComponent(props: { text?: string }) {
       <div className="flex flex-1 h-full w-full min-w-[260px] lg:max-w-1/3 lg:w-1/3 m-2">
         <EquipmentDisplay />
       </div>
-      <div className="w-full lg:max-w-1/3 lg:w-1/3 m-2">
-        <div className="flex-1 grow">
-          <span className="p-1 bg-green-800">Details</span>
-          <span className="p-1 bg-orange-200">Physical Damage</span>
-          <span className="p-1 bg-blue-300">Magical Damage</span>
+      <div className="w-full lg:max-w-1/3 lg:w-1/3 m-2 bg-gray-950">
+        <div className="flex flex-1 flex-row grow">
+          <div className="p-3bg-gray-950">
+            <div
+              onClick={() => setStatTabVal(0)}
+              className={styleDiff(
+                statTabVal === 0,
+                "bg-gray-950",
+                "bg-gray-600",
+                "p-3 mx-1 rounded-t-lg border-[1px] border-b-0 text-green-500 "
+              )}
+            >
+              Details
+            </div>
+          </div>
+          <div
+            onClick={() => setStatTabVal(1)}
+            className={styleDiff(
+              statTabVal === 1,
+              "bg-gray-950",
+              "bg-gray-600",
+              "p-3 mx-1 rounded-t-lg border-[1px] border-b-0 text-orange-200 "
+            )}
+            // className={styleDiff(statTabVal === 0, "bg-gray-950", "bg-gray-600", "p-3 mx-1 rounded-t-lg border-[1px] border-b-0 text-green-500 ")}
+          >
+            Physical Damage
+          </div>
+          <div
+            onClick={() => setStatTabVal(2)}
+            className={styleDiff(
+              statTabVal === 2,
+              "bg-gray-950",
+              "bg-gray-600",
+              "p-3 mx-1 rounded-t-lg border-[1px] border-b-0 text-blue-300 "
+            )}
+            // className={styleDiff(statTabVal === 0, "bg-gray-950", "bg-gray-600", "p-3 mx-1 rounded-t-lg border-[1px] border-b-0 text-green-500 ")}
+          >
+            Magical Damage
+          </div>
         </div>
 
-        <div className="flex-1">
-          <DisplayStats attributes={attributes} />
+        <div className="p-4 flex-1">
+          {statTabVal === 0 ? <DisplayStats attributes={attributes} /> : null}
+          {statTabVal === 1 ? <PhysicalStats attributes={attributes} /> : null}
+          {statTabVal === 2 ? <MagicalStats attributes={attributes} /> : null}
         </div>
       </div>
     </div>
@@ -67,7 +123,7 @@ export default function SimulatorComponent(props: { text?: string }) {
  * @see https://v0.dev/t/ydgoSU2IfFd
  */
 //import { Button } from "@/components/ui/button"
-import React from "react";
+import React, { useState } from "react";
 
 type ItemRarity =
   | "none"

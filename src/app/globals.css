@@ -128,3 +128,10 @@ body {
     width: 80%;
   }
 }
+
+.triangle {
+  width: 0;
+  height: 0;
+  border: solid 30px;
+  border-color: transparent transparent transparent black;
+}

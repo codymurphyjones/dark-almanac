@@ -263,7 +263,7 @@ export function DisplayStats(props: { attributes: AttributeInputSet }) {
     magicPowerFromWill
   );
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col text-sm">
       <div>
         <b>Health</b>: {baseHp}
       </div>
@@ -368,5 +368,212 @@ export function DisplayStats(props: { attributes: AttributeInputSet }) {
     </div>
   );
 }
-const output = { useAttributeValues, StatEditor, DisplayStats };
+
+export function PhysicalStats(props: { attributes: AttributeInputSet }) {
+  const { attributes } = props;
+  const strength = attributes.strength.value;
+  const agility = attributes.agility.value;
+  const armor = attributes.armor.value;
+  const dexterity = attributes.dexterity.value;
+  const vigor = attributes.vigor.value;
+
+  let hpFromStrAndVigor = useMemo(
+    () => calculateMaxHealthFromStrAndVigor(strength, vigor),
+    [strength, vigor]
+  );
+
+  let baseHp = useMemoizedValue(calculateBaseHealth, hpFromStrAndVigor);
+
+  let baseMoveSpeed = useMemoizedValue(calculateMovespeedFromAgi, agility);
+  let actionSpeedValue = useMemoizedValue(
+    calculateActionSpeedValue,
+    dexterity,
+    agility
+  );
+  let actionSpeed = useMemoizedValue(calculateAction, actionSpeedValue);
+
+  let physicalDamageReduction = useMemoizedValue(
+    calculatePhysicalDamageReduction,
+    armor
+  );
+
+  let physicalPowerBonusFromStrength = useMemoizedValue(
+    calculatePhysicalPowerFromStrength,
+    strength
+  );
+  let physicalPowerBonus = useMemoizedValue(
+    calculatePhysicalPowerBonus,
+    physicalPowerBonusFromStrength
+  );
+
+  return (
+    <div className="flex flex-col text-sm">
+      <div>
+        <b>Health</b>: {baseHp}
+      </div>
+      <hr />
+      <div>
+        <b>Move Speed</b>: {300 + baseMoveSpeed}
+      </div>
+      <div>
+        <b>Action Speed</b>: {actionSpeed}%
+      </div>
+      <hr />
+      <div>
+        <b>Armor Penetration</b>: 0
+      </div>
+      <div>
+        <b>Headshot Reduction</b>: 0
+      </div>
+      <div>
+        <b>Projectile Damage Reduction</b>: 0
+      </div>
+      <hr />
+      <div>
+        <b>Physical Damage Reduction</b>: {physicalDamageReduction}%
+      </div>
+      <div>
+        <b>From Armor Rating</b>: 0
+      </div>
+      <div>
+        <b>From Bonuses</b>: 0
+      </div>
+      <hr />
+
+      <div>
+        <b>Physical Power Bonus</b>: {physicalPowerBonus}%
+      </div>
+      <div>
+        <b>From Physical Power</b>: {physicalPowerBonusFromStrength}
+      </div>
+      <div>
+        <b>From Bonuses</b>: 0
+      </div>
+      <hr />
+
+      <div>
+        <b>Primary Weapon</b>: Rondel Dagger (18)
+      </div>
+      <div>
+        <br />
+        <b>First Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * 18 * (1 + 12 * 0.01)} <br />
+      </div>
+      <div>
+        <b>Second Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * 18.5 * (1 + 12 * 0.01)} <br />
+      </div>
+      <div>
+        <b>Third Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * 18.5 * (1 + 12 * 0.01)} <br />
+      </div>
+    </div>
+  );
+}
+
+export function MagicalStats(props: { attributes: AttributeInputSet }) {
+  const { attributes } = props;
+  const memCap = 0;
+  const memCapBonus = 0;
+  const strength = attributes.strength.value;
+  const will = attributes.will.value;
+  const knowledge = attributes.knowledge.value;
+  const vigor = attributes.vigor.value;
+
+  let hpFromStrAndVigor = useMemo(
+    () => calculateMaxHealthFromStrAndVigor(strength, vigor),
+    [strength, vigor]
+  );
+
+  let baseHp = useMemoizedValue(calculateBaseHealth, hpFromStrAndVigor);
+  let memCapFromKnowledge = useMemoizedValue(
+    calculateMemoryCapacityFromKnowledge,
+    knowledge
+  );
+  let memCapacity = useMemoizedValue(
+    calculateMemoryCapacity,
+    knowledge,
+    memCapBonus,
+    memCap
+  );
+
+  let spellRecovery = useMemoizedValue(calculateSpellRecovery, knowledge);
+
+  let spellCastingSpeed = useMemoizedValue(calculateSpellCasting, knowledge);
+  let buffDuration = useMemoizedValue(calculateBuffDuration, will);
+  let debuffDuration = useMemoizedValue(calculateDebuffDuration, will);
+
+  let magicRes = useMemoizedValue(calculateMagicResist, will);
+  let magicResistance = useMemoizedValue(
+    calculateMagicDamageReduction,
+    magicRes
+  );
+  let magicPowerFromWill = useMemoizedValue(calculateMagicPower, will);
+  let magicPowerBonus = useMemoizedValue(
+    calculateMagicPowerBonus,
+    magicPowerFromWill
+  );
+  return (
+    <div className="flex flex-col text-sm">
+      <div>
+        <b>Health</b>: {baseHp}
+      </div>
+      <div>
+        <b>Memory Capacity</b>: {memCapacity}
+      </div>
+      <div>
+        <b>Spell Recovery Bonus</b>: {spellRecovery}%
+      </div>
+      <hr />
+      <div>
+        <b>Spell Casting Speed</b>: {spellCastingSpeed}%
+      </div>
+      <div>
+        <b>Buff Duration</b>: {buffDuration}%
+      </div>
+      <div>
+        <b>Debuff Duration</b>: {debuffDuration}%
+      </div>
+      <hr />
+      <div>
+        <b>Magic Penetration</b>: 0
+      </div>
+      <hr />
+      <div>
+        <b>Headshot Reduction</b>: 0
+      </div>
+      <div>
+        <b>Projectile Damage Reduction</b>: 0
+      </div>
+      <hr />
+      <div>
+        <b>Magic Resistance</b>: {magicResistance}%
+      </div>
+      <div>
+        <b>From Resist Rating</b>: 0
+      </div>
+      <div>
+        <b>From Bonuses</b>: 0
+      </div>
+      <hr />
+      <div>
+        <b>Magic Power Bonus</b>: {magicPowerBonus}%
+      </div>
+      <div>
+        <b>From Magic Power</b>: {magicPowerFromWill}
+      </div>
+      <div>
+        <b>From Bonuses</b>: 0
+      </div>
+    </div>
+  );
+}
+
+const output = {
+  useAttributeValues,
+  StatEditor,
+  DisplayStats,
+  PhysicalStats,
+  MagicalStats,
+};
 export default output;
