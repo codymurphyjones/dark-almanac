@@ -2,7 +2,6 @@
 import { Modal } from "./modal";
 
 export default function Page() {
-  console.log("Login Popup?");
   return (
     <>
       <div className="w-20 h-20 bg-red-300">TESTING</div>

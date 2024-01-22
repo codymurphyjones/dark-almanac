@@ -9,41 +9,6 @@ function defaultModifier(input: number) {
   return input;
 }
 
-// export function calculateStatCurve(
-//   min: number,
-//   arr: number[][],
-//   modifier = defaultModifier
-// ) {
-//   return function (input: number): number {
-//     let minResult = min;
-//     const val = arr[0][0];
-//     if (input < val) console.log(min);
-
-//     let weightCheck = -1;
-//     let currIndex = 0;
-
-//     function selectNextCurve() {
-//       let baseResult =
-//         minResult +
-//         (arr[currIndex + 1][0] - arr[currIndex][0]) * arr[currIndex][1];
-//       minResult = baseResult;
-//       currIndex++;
-//     }
-
-//     while (weightCheck < 0) {
-//       if (currIndex >= arr.length) {
-//         weightCheck = currIndex;
-//         continue;
-//       }
-
-//       if (arr[currIndex + 1][0] < input) selectNextCurve();
-//       else weightCheck = currIndex;
-//     }
-//     let result = minResult + (input - arr[currIndex][0]) * arr[currIndex][1];
-//     return modifier(result);
-//   };
-// }
-
 export function calculateStatCurve(
   min: number,
   arr: number[][],

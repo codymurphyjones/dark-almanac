@@ -15,7 +15,7 @@ import {
   useAttributeValues,
   DisplayStats,
   StatEditor,
-} from "@Component/ui/StatEditor";
+} from "@Component/StatEditor";
 
 //import { useAttributeValues } from "../../lib/hooks";
 

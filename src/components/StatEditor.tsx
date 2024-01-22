@@ -11,19 +11,19 @@ import {
   calculatePersuasiveness,
   calculateRegularInteraction,
   calculateRegularInteratonSpeedValue,
-} from "../../app/simulator/InteractionSpeed";
+} from "@Lib/simulator/InteractionSpeed";
 import {
   calculatePhysicalDamageReduction,
   calculatePhysicalPowerBonus,
   calculatePhysicalPowerFromStrength,
-} from "../../app/simulator/PhysicalDamage";
+} from "@Lib/simulator/PhysicalDamage";
 import {
   calculateBaseHealth,
   calculateHealthRecovery,
   calculateMaxHealthFromStrAndVigor,
   calculateMovespeedFromAgi,
   calculateSpellRecovery,
-} from "../../app/simulator/Character";
+} from "@Lib//simulator/Character";
 import {
   calculateBuffDuration,
   calculateDebuffDuration,
@@ -34,7 +34,7 @@ import {
   calculateMemoryCapacity,
   calculateMemoryCapacityFromKnowledge,
   calculateSpellCasting,
-} from "../../app/simulator/MagicalDamage";
+} from "@Lib/simulator/MagicalDamage";
 
 function ifNaN(
   value: string,
