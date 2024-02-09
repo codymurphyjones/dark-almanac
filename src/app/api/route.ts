@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
 
-  return NextResponse.json(`{
+  return NextResponse.json({
     "Date": '01/12/2021',
     "Description": "Description",
     "Hours": "2",
@@ -13,5 +13,5 @@ export async function GET(request: NextRequest) {
     "Material": "material",
     "Activity Group": "group",
     "Activity Subcategory": "subcategory"
-}`);
+});
 }
