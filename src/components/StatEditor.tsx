@@ -467,6 +467,24 @@ export function PhysicalStats(props: { attributes: AttributeInputSet }) {
         <b>Third Strike</b>:
         {((100 + physicalPowerBonus) / 100) * 18.5 * (1 + 12 * 0.01)} <br />
       </div>
+      <div>
+        <b>Secondary Weapon</b>: Castillion Dagger (17)
+      </div>
+      <div>
+        <br />
+        <b>First Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * 17 * (1 + 12 * 0.01)} <br />
+      </div>
+      <div>
+        <b>Second Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * (17 * 1.5) * (1 + 12 * 0.01)}{" "}
+        <br />
+      </div>
+      <div>
+        <b>Third Strike</b>:
+        {((100 + physicalPowerBonus) / 100) * (17 * 1.5) * (1 + 12 * 0.01)}{" "}
+        <br />
+      </div>
     </div>
   );
 }
